@@ -37,41 +37,44 @@ def password_authenticating(db_password, user_password):
     return hashed_password == db_password
 
 
-user_name = input("enter user name: ")
-user_passwd = input("user enter a password: ")
-# #saved_password = hashing(user_passwd)
-# #
+user_name = "red"  # input("enter user name: ")
+user_passwd = "black"  # input("user enter a password: ")
+# saved_password = hashing(user_passwd)
+
 # write_file = open("mypw.txt", 'a')
 # write_file.write("\n" + user_name + "," + user_passwd)
 # write_file.close()
-
+my_dict = {}
 read_file = open("mypw.txt", 'r')
-for line in read_file:
+for line in read_file.readlines():
     user, pw = line.split(",")
     pw = pw.strip()
-    #print(pw,user)
-    if user==user_name and pw==user_passwd:
-        print("success")
-        break
+    my_dict.update({user: pw})
 
+print(my_dict)
+i = 0
+# while i < 6:
+#    if (i == "3"):
+#        print("y")
+#        break
+#    i += 1
+# else:print("n")
+access = False
+while i < len(my_dict) and access != True:
+    for x, y in my_dict.items():
+        if x == user_name and y == user_passwd:
+            print("access granted")
+            access = True
 
+            break
+    # print("j")
 
-
-
-
-
-
-
-
+    i += 1
+if access == False:
+    print("access denied")
 
 read_file.close()
 
-# x = " a,b"
-# g, h = (x.split(","))
-# print(x)
-# #print(g, h)
-# h = h.strip()
-# print(g, h)
-
 # print(password_authenticating(saved_password, "lise"))
-# print(password_authenticating(saved_password,userpassword))
+#print(password_authenticating(saved_password,userpassword))
+
